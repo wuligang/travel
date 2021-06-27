@@ -1,6 +1,6 @@
 /*
  Navicat Premium Data Transfer
-
+s
  Source Server         : localhost_mysql
  Source Server Type    : MySQL
  Source Server Version : 80021
@@ -23,10 +23,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tab_category`;
 CREATE TABLE `tab_category`  (
   `cid` int(0) NOT NULL AUTO_INCREMENT,
-  `cname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cname` varchar(100) CHARACTER SET utf8mb4  NOT NULL,
   PRIMARY KEY (`cid`) USING BTREE,
   UNIQUE INDEX `AK_nq_categoryname`(`cname`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_category
@@ -52,7 +52,7 @@ CREATE TABLE `tab_favorite`  (
   INDEX `FK_user_favorite`(`uid`) USING BTREE,
   CONSTRAINT `FK_route_favorite` FOREIGN KEY (`rid`) REFERENCES `tab_route` (`rid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_user_favorite` FOREIGN KEY (`uid`) REFERENCES `tab_user` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_favorite
@@ -64,24 +64,24 @@ CREATE TABLE `tab_favorite`  (
 DROP TABLE IF EXISTS `tab_route`;
 CREATE TABLE `tab_route`  (
   `rid` int(0) NOT NULL AUTO_INCREMENT,
-  `rname` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rname` varchar(500) CHARACTER SET utf8mb4  NOT NULL,
   `price` double NOT NULL,
-  `routeIntroduce` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `rflag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `rdate` varchar(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `isThemeTour` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `routeIntroduce` varchar(1000) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `rflag` char(1) CHARACTER SET utf8mb4  NOT NULL,
+  `rdate` varchar(19) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `isThemeTour` char(1) CHARACTER SET utf8mb4  NOT NULL,
   `count` int(0) NULL DEFAULT 0,
   `cid` int(0) NOT NULL,
-  `rimage` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `rimage` varchar(200) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `sid` int(0) NULL DEFAULT NULL,
-  `sourceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sourceId` varchar(50) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`rid`) USING BTREE,
   UNIQUE INDEX `AK_nq_sourceId`(`sourceId`) USING BTREE,
   INDEX `FK_category_route`(`cid`) USING BTREE,
   INDEX `FK_seller_route`(`sid`) USING BTREE,
   CONSTRAINT `FK_category_route` FOREIGN KEY (`cid`) REFERENCES `tab_category` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_seller_route` FOREIGN KEY (`sid`) REFERENCES `tab_seller` (`sid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 514 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 514 CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_route
@@ -607,12 +607,12 @@ DROP TABLE IF EXISTS `tab_route_img`;
 CREATE TABLE `tab_route_img`  (
   `rgid` int(0) NOT NULL AUTO_INCREMENT,
   `rid` int(0) NOT NULL,
-  `bigPic` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `smallPic` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `bigPic` varchar(200) CHARACTER SET utf8mb4  NOT NULL,
+  `smallPic` varchar(200) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`rgid`) USING BTREE,
   INDEX `FK_route_routeimg`(`rid`) USING BTREE,
   CONSTRAINT `FK_route_routeimg` FOREIGN KEY (`rid`) REFERENCES `tab_route` (`rid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2091 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2091 CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_route_img
@@ -2714,12 +2714,12 @@ INSERT INTO `tab_route_img` VALUES (2090, 513, 'img/product/size4/m4cc0ae9ebf1a6
 DROP TABLE IF EXISTS `tab_seller`;
 CREATE TABLE `tab_seller`  (
   `sid` int(0) NOT NULL AUTO_INCREMENT,
-  `sname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `consphone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sname` varchar(200) CHARACTER SET utf8mb4  NOT NULL,
+  `consphone` varchar(20) CHARACTER SET utf8mb4  NOT NULL,
+  `address` varchar(200) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`sid`) USING BTREE,
   UNIQUE INDEX `AK_Key_2`(`sname`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_seller
@@ -2732,19 +2732,19 @@ INSERT INTO `tab_seller` VALUES (1, '黑马程序员', '12345678901', '传智播
 DROP TABLE IF EXISTS `tab_user`;
 CREATE TABLE `tab_user`  (
   `uid` int(0) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4  NOT NULL,
+  `password` varchar(32) CHARACTER SET utf8mb4  NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   `birthday` date NULL DEFAULT NULL,
-  `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `telephone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sex` char(1) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `telephone` varchar(11) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `status` char(1) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
+  `code` varchar(50) CHARACTER SET utf8mb4  NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE,
   UNIQUE INDEX `AK_nq_username`(`username`) USING BTREE,
   UNIQUE INDEX `AK_nq_code`(`code`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 ;
 
 -- ----------------------------
 -- Records of tab_user
